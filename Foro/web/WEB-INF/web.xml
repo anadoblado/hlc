@@ -4,9 +4,17 @@
         <servlet-name>loguear</servlet-name>
         <servlet-class>Servlet.loguear</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>registrarUsuariol</servlet-name>
+        <servlet-class>Servlet.registrarUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loguear</servlet-name>
         <url-pattern>/loguear</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registrarUsuariol</servlet-name>
+        <url-pattern>/registrarUsuariol</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

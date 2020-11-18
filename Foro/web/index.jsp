@@ -25,7 +25,7 @@
                 response.sendRedirect("logueo.jsp");
             }
         %>
-
+<!--
         <div class="container">
             <h1>Loguear</h1>
             <form action="loguear" method="post">
@@ -40,10 +40,10 @@
                 <button type="submit" class="btn btn-outline-info" name="enviar">Loguear</button>
             </form>
             <%
-            if(session.getAttribute("mensaje") != null){
-                out.println(session.getAttribute("mensaje"));
-            }
+           // if(session.getAttribute("mensaje") != null){
+             //   out.println(session.getAttribute("mensaje"));
+           // }
         %>
         </div>
     </body>
-</html>
+</html> -->
