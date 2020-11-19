@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models;
+package Models;
 
 import java.io.Serializable;
 
@@ -14,13 +14,13 @@ import java.io.Serializable;
 public class Usuario implements Serializable {
     
     String nombre;
-    String passord;
-    String mensaje;
+    String password;
+    String id;
 
-    public Usuario(String nombre, String passord, String mensaje) {
+    public Usuario(String id, String nombre, String password) {
         this.nombre = nombre;
-        this.passord = passord;
-        this.mensaje = mensaje;
+        this.password = password;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -31,22 +31,23 @@ public class Usuario implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getPassord() {
-        return passord;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassord(String passord) {
-        this.passord = passord;
+    public void setPassword(String passord) {
+        this.password = passord;
     }
 
-    public String getMensaje() {
-        return mensaje;
+    public String getId() {
+        return id;
     }
 
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
+    public void setId(String id) {
+        this.id = id;
     }
-    
+
+
     
     
 }

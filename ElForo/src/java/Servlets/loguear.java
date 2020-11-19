@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlet;
+package Servlets;
 
-import controladores.controladorAdministrador;
+import Models.Administrador;
+import Models.Usuario;
+import controlador.controladorAdministrador;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -13,8 +15,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Administrador;
-import models.Usuario;
 
 /**
  *
@@ -35,19 +35,25 @@ public class loguear extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             Boolean logueado = false;
             Boolean logueadoUsu = false;
             Boolean logueadoAdm = false;
-            String fichero = "D:\\datos3.dat";
+            Usuario usua = null;
+            Administrador admi = null;
+
+            String fichero = "D:\\usuarios.dat";
             String ficheroAdmin = "D:\\datosAdm2.dat";
+            String ficheroMensajes = "D:\\mensajes.dat";
 
             ArrayList<Administrador> administradores = controladorAdministrador.leerFicheroAdmi(ficheroAdmin);
             for (Administrador adm : administradores) {
-                if (adm.getUsuario().equals(request.getParameter("nombre"))
+                if (adm.getUsuario().equals(request.getParameter("usuario"))
                         && adm.getPassword().equals(request.getParameter("pass"))) {
                     logueadoAdm = true;
                     logueado = true;
+                    admi = adm;
+
                 }
             }
 
@@ -56,11 +62,12 @@ public class loguear extends HttpServlet {
             //recorremos la lista para verificar que el usuario está en la lista
 
             for (Usuario usu : usuarios) {
-                if (usu.getNombre().equals(request.getParameter("nombre"))
-                        && usu.getPassord().equals(request.getParameter("pass"))) {
+                if (usu.getNombre().equals(request.getParameter("usuario"))
+                        && usu.getPassword().equals(request.getParameter("pass"))) {
                     logueado = true;
                     logueadoUsu = true;
-                     
+                    usua = usu;
+
                 }
             }
 
@@ -68,20 +75,16 @@ public class loguear extends HttpServlet {
                 response.sendRedirect("index.jsp");
             } else if (logueadoAdm == true) {
                 System.out.println("Administrador");
-                    request.getSession().setAttribute("USR", request.getParameter("nombre"));  
-                    //request.getRequestDispatcher("vistaAdministrador.jsp").forward(request, response);
-                    response.sendRedirect("vistaAdministrador.jsp");
-                }
-                else if (logueadoUsu == true) {
-                    System.out.println("Usuario");
-                    request.getSession().setAttribute("USR", request.getParameter("nombre"));
-                    //request.getRequestDispatcher("lista.jsp").forward(request, response);
-                    response.sendRedirect("vistaUsuario.jsp");
-                }
-            
-
+                request.getSession().setAttribute("logueado", admi);
+                //request.getRequestDispatcher("vistaAdministrador.jsp").forward(request, response);
+                response.sendRedirect("vistaAdministrador.jsp");
+            } else if (logueadoUsu == true) {
+                System.out.println("Usuario");
+                request.getSession().setAttribute("logueado", usua);
+                //request.getRequestDispatcher("lista.jsp").forward(request, response);
+                response.sendRedirect("vistaUsuario.jsp");
+            }
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

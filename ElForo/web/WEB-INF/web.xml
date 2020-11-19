@@ -2,19 +2,27 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>loguear</servlet-name>
-        <servlet-class>Servlet.loguear</servlet-class>
+        <servlet-class>Servlets.loguear</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>registrarUsuariol</servlet-name>
-        <servlet-class>Servlet.registrarUsuario</servlet-class>
+        <servlet-name>nuevoMensaje</servlet-name>
+        <servlet-class>Servlets.nuevoMensaje</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>borrar</servlet-name>
+        <servlet-class>Servlets.borrar</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>loguear</servlet-name>
         <url-pattern>/loguear</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>registrarUsuariol</servlet-name>
-        <url-pattern>/registrarUsuariol</url-pattern>
+        <servlet-name>nuevoMensaje</servlet-name>
+        <url-pattern>/nuevoMensaje</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>borrar</servlet-name>
+        <url-pattern>/borrar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models;
+package Models;
 
 import java.io.Serializable;
 
@@ -13,20 +13,20 @@ import java.io.Serializable;
  */
 public class Administrador implements Serializable{
     
-    String usuario;
+    String nombre;
     String password;
 
     public Administrador(String usuario, String password) {
-        this.usuario = usuario;
+        this.nombre = usuario;
         this.password = password;
     }
 
     public String getUsuario() {
-        return usuario;
+        return nombre;
     }
 
     public void setUsuario(String usuario) {
-        this.usuario = usuario;
+        this.nombre = usuario;
     }
 
     public String getPassword() {
