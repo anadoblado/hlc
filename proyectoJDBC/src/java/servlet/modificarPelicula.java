@@ -7,6 +7,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author anita
  */
-public class borrar extends HttpServlet {
+public class modificarPelicula extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +37,7 @@ public class borrar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Connection conector = null;
+         Connection conector = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conector = DriverManager.getConnection(
@@ -47,17 +48,21 @@ public class borrar extends HttpServlet {
         }
         
         int id = Integer.parseInt(request.getParameter("id"));
-        
+        String titulo = request.getParameter("titulo");
+        String festreno = request.getParameter("festreno");
+        String genero = request.getParameter("genero");
+        String director = request.getParameter("director");
         try (PrintWriter out = response.getWriter()) {
-            String sentencia = "DELETE FROM usuarios WHERE id='" + id + "'";
+            String sentencia = "UPDATE peliculas SET titulo='" + titulo + "', festreno='" + festreno + "',genero='" + genero + "',director='" + director + "' WHERE idpeliculas='" + id + "'";
             PreparedStatement instruccion = conector.prepareStatement(sentencia);
-            //instruccion.setInt(1, id);
-            instruccion.executeUpdate(sentencia);
+
+            instruccion.executeUpdate();
             instruccion.close();
             conector.close();
-            response.sendRedirect("listaUsuarios.jsp");
+            response.sendRedirect("listaPeliculas.jsp");
         } catch (SQLException ex) {
-            Logger.getLogger(borrar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(modificar.class.getName()).log(Level.SEVERE, null, ex);
+            out.println("no se pudo realizar la operación");
         }
     }
 

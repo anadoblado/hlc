@@ -16,6 +16,18 @@
         <servlet-name>borrar</servlet-name>
         <servlet-class>servlet.borrar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>crearPelicula</servlet-name>
+        <servlet-class>servlet.crearPelicula</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>borrarPelicula</servlet-name>
+        <servlet-class>servlet.borrarPelicula</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>modificarPelicula</servlet-name>
+        <servlet-class>servlet.modificarPelicula</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>s1</servlet-name>
         <url-pattern>/s1</url-pattern>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>borrar</servlet-name>
         <url-pattern>/borrar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crearPelicula</servlet-name>
+        <url-pattern>/crearPelicula</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>borrarPelicula</servlet-name>
+        <url-pattern>/borrarPelicula</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarPelicula</servlet-name>
+        <url-pattern>/modificarPelicula</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

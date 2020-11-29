@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author anita
  */
-public class borrar extends HttpServlet {
+public class crearPelicula extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +36,7 @@ public class borrar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Connection conector = null;
+         Connection conector = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conector = DriverManager.getConnection(
@@ -45,19 +45,27 @@ public class borrar extends HttpServlet {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         int id = Integer.parseInt(request.getParameter("id"));
+        String titulo = request.getParameter("titulo");
+        String festreno = request.getParameter("festreno");
+        String genero  = request.getParameter("genero");
+        String director = request.getParameter("director");
+        
         
         try (PrintWriter out = response.getWriter()) {
-            String sentencia = "DELETE FROM usuarios WHERE id='" + id + "'";
-            PreparedStatement instruccion = conector.prepareStatement(sentencia);
-            //instruccion.setInt(1, id);
-            instruccion.executeUpdate(sentencia);
+          String sentencia = "INSERT INTO peliculas VALUES (?,?,?,?,?)";
+          PreparedStatement instruccion = conector.prepareStatement(sentencia);
+          instruccion.setInt(1, id);
+          instruccion.setString(2, titulo);
+          instruccion.setString(3, festreno);
+          instruccion.setString(4, genero);
+          instruccion.setString(5, director);
+          
+          instruccion.executeUpdate();
             instruccion.close();
-            conector.close();
-            response.sendRedirect("listaUsuarios.jsp");
+            response.sendRedirect("crearPelicula.jsp");
         } catch (SQLException ex) {
-            Logger.getLogger(borrar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(crear.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

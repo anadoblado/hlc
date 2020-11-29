@@ -32,9 +32,7 @@
             <form action="listaAlquileres.jsp">
                 <input type="submit" name="verAlquileres" value="Lista de alquileres">
             </form>
-            <form action="crearUsuario.jsp">
-                <input type="submit" name="crearUsuario" value="Crear usuario">
-            </form>
+            
             <form action="crearPelicula.jsp">
                 <input type="submit" name="crearUsuario" value="Crear película">
             </form>

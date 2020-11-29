@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author anita
  */
-public class borrar extends HttpServlet {
+public class borrarPelicula extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,13 +49,13 @@ public class borrar extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         
         try (PrintWriter out = response.getWriter()) {
-            String sentencia = "DELETE FROM usuarios WHERE id='" + id + "'";
+            String sentencia = "DELETE FROM peliculas WHERE idpeliculas='" + id + "'";
             PreparedStatement instruccion = conector.prepareStatement(sentencia);
             //instruccion.setInt(1, id);
             instruccion.executeUpdate(sentencia);
             instruccion.close();
             conector.close();
-            response.sendRedirect("listaUsuarios.jsp");
+            response.sendRedirect("listaPeliculas.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(borrar.class.getName()).log(Level.SEVERE, null, ex);
         }

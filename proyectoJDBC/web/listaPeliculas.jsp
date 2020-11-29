@@ -25,7 +25,7 @@
 
     </head>
     <body>
-        <h1>Lista Usuarios</h1>
+        <h1>Lista Películas</h1>
         <%
             if (session.getAttribute("logueado") == null) {
                 response.sendRedirect("index.jsp");
@@ -42,53 +42,51 @@
                 }
                 Statement s = (Statement) conector.createStatement();
 
-                ResultSet rs = s.executeQuery("SELECT * FROM usuarios");
-                //while(rs.next()) {
+                ResultSet rs = s.executeQuery("SELECT * FROM peliculas");
+                 //while(rs.next()) {
         %>
         <table class="table">
             <thead>
                 <tr class="table-info">
                     <th>Id</th>
-                    <th>Usuario</th>
-                    <th>Password</th>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Email</th>
+                    <th>Título</th>
+                    <th>Año de estreno</th>
+                    <th>Género</th>
+                    <th>Directos</th>
                 </tr>
             </thead>
             <% //while(rs.next()) { %>
             <tbody>
                 <%
-                    while (rs.next()) {
+                   while(rs.next()) {
                         out.println("<tr class=''>");
-                        out.println("<td>" + rs.getInt("id") + "</td>");
-                        out.println("<td>" + rs.getString("usuario") + "</td>");
-                        out.println("<td>" + rs.getString("pass") + "</td>");
-                        out.println("<td>" + rs.getString("nombre") + "</td>");
-                        out.println("<td>" + rs.getString("apellidos") + "</td>");
-                        out.println("<td>" + rs.getString("mail") + "</td>");
+                        out.println("<td>" + rs.getInt("idpeliculas")+ "</td>");
+                        out.println("<td>" + rs.getString("titulo") + "</td>");
+                        out.println("<td>" + rs.getString("festreno") + "</td>");
+                        out.println("<td>" + rs.getString("genero") + "</td>");
+                        out.println("<td>" + rs.getString("director") + "</td>");
                         out.println("</tr>");
-                    }
+                     }
                 %>
             </tbody>
         </table>
         <%
+               
             }
         %>
         <div class="btn-group">
             <form action="vistaAdministrador.jsp">
                 <button type="submit" name="alprincipio" class="btn btn-outline-primary">Volver</button>
             </form>
-            <form action="crearUsuario.jsp">
-                <input type="submit" name="crearUsuario" value="Crear usuario" class="btn btn-outline-primary">
+            <form action="crearPelicula.jsp">
+                <input type="submit" name="crearPelicula" value="Crear película" class="btn btn-outline-primary">
             </form>
-            <form action="modificarUsuario.jsp">
-                <input type="submit" name="modificarUsuario" value="Modificar usuario" class="btn btn-outline-primary">
+            <form action="modificarPelicula.jsp">
+                <input type="submit" name="modificarPelicula" value="Modificar película" class="btn btn-outline-primary">
             </form>
-            <form action="borrarUsuario.jsp">
-                <input type="submit" name="borrarUsuario" value="Borrar usuario"  class="btn btn-outline-primary">
+            <form action="borrarPelicula.jsp">
+                <input type="submit" name="borrarPelicula" value="Borrar película"  class="btn btn-outline-primary">
             </form>
         </div>
-
     </body>
 </html>
