@@ -65,6 +65,11 @@ public class s1 extends HttpServlet {
                  response.sendRedirect("vistaAdministrador.jsp");
             }else{
                 request.getSession().setAttribute("logueado", rs.getString(4));
+                request.getSession().setAttribute("id",rs.getInt(1));
+                request.getSession().setAttribute("usuario", rs.getString(2));
+                request.getSession().setAttribute("pass", rs.getString(3));
+                request.getSession().setAttribute("apellidos", rs.getString(5));
+                request.getSession().setAttribute("mail", rs.getString(6));
                 response.sendRedirect("vistaUsuario.jsp");
             }
         }

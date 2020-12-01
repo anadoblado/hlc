@@ -28,6 +28,26 @@
         <servlet-name>modificarPelicula</servlet-name>
         <servlet-class>servlet.modificarPelicula</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>modificar2</servlet-name>
+        <servlet-class>servlet.modificar2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>crearAlquiler</servlet-name>
+        <servlet-class>servlet.crearAlquiler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>modificarAlquiler</servlet-name>
+        <servlet-class>servlet.modificarAlquiler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>crearAlquilerUsuario</servlet-name>
+        <servlet-class>servlet.crearAlquilerUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>borrarAlquiler</servlet-name>
+        <servlet-class>servlet.borrarAlquiler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>s1</servlet-name>
         <url-pattern>/s1</url-pattern>
@@ -55,6 +75,26 @@
     <servlet-mapping>
         <servlet-name>modificarPelicula</servlet-name>
         <url-pattern>/modificarPelicula</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificar2</servlet-name>
+        <url-pattern>/modificar2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crearAlquiler</servlet-name>
+        <url-pattern>/crearAlquiler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarAlquiler</servlet-name>
+        <url-pattern>/modificarAlquiler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crearAlquilerUsuario</servlet-name>
+        <url-pattern>/crearAlquilerUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>borrarAlquiler</servlet-name>
+        <url-pattern>/borrarAlquiler</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
