@@ -59,25 +59,25 @@
                             <div class="form-group">
                                 <label>Id de la película: </label>
                                 <select name="idpelicula" class="form-control">
-                                <%
-                                    Connection conector = null;
-                try {
-                    Class.forName("com.mysql.cj.jdbc.Driver");
-                    conector = DriverManager.getConnection(
-                            "jdbc:mysql://localhost:3306/videoclub?serverTimezone=UTC", "java", "1234");
+                                    <%
+                                        Connection conector = null;
+                                        try {
+                                            Class.forName("com.mysql.cj.jdbc.Driver");
+                                            conector = DriverManager.getConnection(
+                                                    "jdbc:mysql://localhost:3306/videoclub?serverTimezone=UTC", "java", "1234");
 
-                } catch (ClassNotFoundException | SQLException ex) {
-                    Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                Statement s = (Statement) conector.createStatement();
+                                        } catch (ClassNotFoundException | SQLException ex) {
+                                            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                        Statement s = (Statement) conector.createStatement();
 
-                ResultSet rs = s.executeQuery("SELECT * FROM peliculas");
-                while(rs.next()){
-                                %>
-                                <option value=<% out.println(rs.getInt("idpeliculas"));%>><% out.println(rs.getString("titulo"));%></option>
-                               <!-- <input class="form-control" type="text" name="idpelicula" value="<% out.println(rs.getString("titulo"));%>"> -->
-<%}%>
-</select>
+                                        ResultSet rs = s.executeQuery("SELECT * FROM peliculas");
+                                        while (rs.next()) {
+                                    %>
+                                    <option value=<% out.println(rs.getInt("idpeliculas"));%>><% out.println(rs.getString("titulo"));%></option>
+                                   <!-- <input class="form-control" type="text" name="idpelicula" value="<% out.println(rs.getString("titulo"));%>"> -->
+                                    <%}%>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Fecha del alquiler </label>
@@ -88,7 +88,7 @@
                                 <label>Fecha de la devolución </label>
                                 <input class="form-control" type="text" name="fdevuelve">
                             </div>
-                            
+
                             <input type="submit" name="modificar" value="Modificar"> 
                         </form>  
                         <form action="listaAlquiler.jsp">

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
+package Servlets;
 
+import Controladores.conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,75 +37,36 @@ public class s1 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        Connection conector = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conector = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/videoclub?serverTimezone=UTC", "java", "1234");
-
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        
+        Connection conector = conexion.getConection();
+        
         String usuario = request.getParameter("usuario");
-        String pass = request.getParameter("pass");
-        // Administrador admi = null;
+        String password = request.getParameter("password");
+        
         try (PrintWriter out = response.getWriter()) {
-            out.println(pass);
-            out.println(usuario);
-
+          
             Statement s = (Statement) conector.createStatement();
 
-            ResultSet rs = s.executeQuery("SELECT * FROM usuarios WHERE usuario='" + usuario + "' and pass='" + pass + "'");
-
-            if (rs != null && rs.next()) {
+            ResultSet rs = s.executeQuery("SELECT * FROM usuarios WHERE nombre='" + usuario + "' and password='" + password + "'");
+            
+             if (rs != null && rs.next()) {
                 //out.println(rs.getString(3));
                 if (usuario.equals("admin")) {
-                    request.getSession().setAttribute("logueado", rs.getString(4));
+                    request.getSession().setAttribute("logueado", rs.getString(2));
+                    request.getSession().setAttribute("id", rs.getString(1));
                     response.sendRedirect("vistaAdministrador.jsp");
                 } else {
-                    request.getSession().setAttribute("logueado", rs.getString(4));
+                    request.getSession().setAttribute("logueado", rs.getString(2));
                     request.getSession().setAttribute("id", rs.getInt(1));
-                    request.getSession().setAttribute("usuario", rs.getString(2));
-                    request.getSession().setAttribute("pass", rs.getString(3));
-                    request.getSession().setAttribute("apellidos", rs.getString(5));
-                    request.getSession().setAttribute("mail", rs.getString(6));
+                    request.getSession().setAttribute("apellidos", rs.getString(3));
+                    request.getSession().setAttribute("mail", rs.getString(4));
+                    request.getSession().setAttribute("password", rs.getString(5));
                     response.sendRedirect("vistaUsuario.jsp");
                 }
             }else{
                 response.sendRedirect("index.jsp");
             }
-
-            s.close();
-            rs.close();
         }
-    }
-
-    public static void main(String[] args) throws SQLException {
-        Connection conector = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conector = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/videoclub?serverTimezone=UTC", "java", "1234");
-
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Statement s = (Statement) conector.createStatement();
-
-        ResultSet rs = s.executeQuery("SELECT * FROM usuarios");
-        while (rs.next()) {
-            System.out.println(rs.getString(1));
-            System.out.println(rs.getString(2));
-            System.out.println(rs.getString(3));
-        }
-//            if(rs != null && rs.next()){
-//                 System.out.println(rs.getString(3));
-//            }
-        //System.out.println(rs.getString(3));
-        rs.close();
-        s.close();
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

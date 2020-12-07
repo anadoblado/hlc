@@ -55,6 +55,7 @@ public class modificar extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String apellidos = request.getParameter("apellidos");
         String email = request.getParameter("email");
+        
         try (PrintWriter out = response.getWriter()) {
             String sentencia = "UPDATE usuarios SET usuario='" + usuario + "', pass='" + pass + "',nombre='" + nombre + "',apellidos='" + apellidos + "',mail='" + email + "' WHERE id='" + id + "'";
             PreparedStatement instruccion = conector.prepareStatement(sentencia);
