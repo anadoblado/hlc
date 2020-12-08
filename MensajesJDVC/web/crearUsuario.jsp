@@ -98,6 +98,11 @@
                                 <input name="password" type="text" placeholder="Contraseña" required/>
                             </div>
                         </div>
+                            <div class="row">
+                            <div class="col-md-12 login-from-row">
+                                <input name="avatar" type="text" placeholder="Pon el id seguido de .jpeg" required/>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-md-12 login-from-row">

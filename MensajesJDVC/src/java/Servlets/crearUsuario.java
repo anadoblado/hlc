@@ -44,17 +44,19 @@ public class crearUsuario extends HttpServlet {
         String apellidos = request.getParameter("apellidos");
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
+        String avatar = request.getParameter("avatar");
           
 
         try (PrintWriter out = response.getWriter()) {
 
-            String sentencia = "INSERT INTO usuarios VALUES (?,?,?,?,?)";
+            String sentencia = "INSERT INTO usuarios VALUES (?,?,?,?,?,?)";
             PreparedStatement instruccion = conector.prepareStatement(sentencia);
             instruccion.setInt(1, idu);
             instruccion.setString(2, nombre);
             instruccion.setString(3, apellidos);
             instruccion.setString(4, mail);
             instruccion.setString(5, password);
+            instruccion.setString(6, avatar);
             
             instruccion.executeUpdate();
             instruccion.close();

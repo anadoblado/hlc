@@ -35,6 +35,7 @@
          <table class="table">
             <thead>
                 <tr class="table-info">
+                    <th>Avatar</th>
                     <th>Id</th>
                     <th>Nombre</th>
                     <th>Apellidos</th>
@@ -46,6 +47,9 @@
                 <%
                    while(rs.next()) {
                         out.println("<tr class=''>");
+                        %>
+                        <td><img src="<%out.print("images\\");out.print(rs.getInt("id"));%>.jpeg" width="50px" height="50px"></td>
+                        <%
                         out.println("<td>" + rs.getInt("id")+ "</td>");
                         out.println("<td>" + rs.getString("nombre") + "</td>");
                         out.println("<td>" + rs.getString("apellidos") + "</td>");

@@ -22,7 +22,7 @@ class Conexion {
         try {
               Class.forName("com.mysql.cj.jdbc.Driver");
              conector = DriverManager.getConnection(
-             "jdbc:mysql://localhost:3306/forob?serverTimezone=UTC", "java", "1234"); 
+             "jdbc:mysql://localhost:3306/foro?serverTimezone=UTC", "java", "1234"); 
               
           } catch (ClassNotFoundException |SQLException ex) {
               Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);

@@ -5,8 +5,14 @@
  */
 package Servlets;
 
+import Controladores.conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author anita
  */
-public class listaMensajes extends HttpServlet {
+public class modificarUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,17 +36,25 @@ public class listaMensajes extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        Connection conector = conexion.getConection();
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        String avatar = request.getParameter("avatar");
+        String nombre = request.getParameter("nombre");
+        String apellidos = request.getParameter("apellidos");
+        String mail = request.getParameter("mail");
+        String password = request.getParameter("password");
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet listaMensajes</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet listaMensajes at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+           String sentencia = "UPDATE usuarios SET nombre='" + nombre + "', apellidos='" + apellidos + "',mail='" + mail + "',password='" + password + "',avatar='" + avatar + "' WHERE id='" + id + "'";
+            PreparedStatement instruccion = conector.prepareStatement(sentencia);
+
+            instruccion.executeUpdate();
+            instruccion.close();
+            response.sendRedirect("vistaUsuario.jsp");
+        } catch (SQLException ex) {
+            Logger.getLogger(modificarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

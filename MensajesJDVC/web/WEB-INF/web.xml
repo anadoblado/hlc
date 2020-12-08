@@ -24,6 +24,10 @@
         <servlet-name>crearUsuario</servlet-name>
         <servlet-class>Servlets.crearUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>modificarUsuario</servlet-name>
+        <servlet-class>Servlets.modificarUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>s1</servlet-name>
         <url-pattern>/s1</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>crearUsuario</servlet-name>
         <url-pattern>/crearUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarUsuario</servlet-name>
+        <url-pattern>/modificarUsuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

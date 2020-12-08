@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" type="text/css">
     </head>
     <body>
-        <h1>Lista de mensajes</h1>
+       
         <%
              if (session.getAttribute("logueado") == null) {
                 response.sendRedirect("index.jsp");
@@ -33,7 +33,10 @@
                 int id = (int)session.getAttribute("id");
 
                 ResultSet rs = s.executeQuery("SELECT * FROM mensajes where idusurecptor='" + id + "' || idusuemisor='"+ id + "'");
+                       
         %>
+        <h1><strong><% out.println (session.getAttribute("logueado"));%></strong> tus mensajes</h1>
+        
          <table class="table">
             <thead>
                 <tr class="table-info">
@@ -49,8 +52,11 @@
                    while(rs.next()) {
                         out.println("<tr class=''>");
                         out.println("<td>" + rs.getInt("idmensajes")+ "</td>");
-                        out.println("<td>" + rs.getInt("idusuemisor") + "</td>");
-                        out.println("<td>" + rs.getInt("idusurecptor") + "</td>");
+                         %>
+                        <td><img src="<%out.print("images\\");out.print(rs.getInt("idusuemisor"));%>.jpeg" width="50px" height="50px"></td>
+                        <td><img src="<%out.print("images\\");out.print(rs.getInt("idusurecptor"));%>.jpeg" width="50px" height="50px"></td>
+                        <%
+                       // out.println("<td>" + rs.getInt("idusurecptor") + "</td>");
                         out.println("<td>" + rs.getString("contenido") + "</td>");
                         if(rs.getInt("idusuemisor") == id){
                             out.println("<form action='borrarMensaje' method='post'>");
@@ -73,8 +79,10 @@
                 <button type="submit" name="alprincipio" class="btn btn-outline-info">Volver</button>
             </form>
             <form action="crearMensajes.jsp">
-                <input type="submit" name="crearMensaje" value="Crear mensaje" class="btn btn-outline-info">
-                
+                <input type="submit" name="crearMensaje" value="Crear mensaje" class="btn btn-outline-info">          
+            </form>
+             <form action="modificarUsuario.jsp">
+                <input type="submit" name="crearMensaje" value="Ver tus datos" class="btn btn-outline-info">          
             </form>
         </div>
     </body>
